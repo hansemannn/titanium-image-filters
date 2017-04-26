@@ -15,4 +15,4 @@ name: titanium-image-filters
 moduleid: ti.imagefilters
 guid: bc72ce9b-ad0d-41cc-a38a-99d2527460dc
 platform: iphone
-minsdk: 6.0.0:GA
+minsdk: 6.0.0
