@@ -9,12 +9,10 @@
 #import "TiProxy.h"
 #import "GPUImage.h"
 
-@interface TiImagefiltersFilterProxy : TiProxy {
-    GPUImageFilter *filter;
-}
+@interface TiImagefiltersFilterProxy : TiProxy 
+
+@property(nonatomic, strong) GPUImageFilter *filter;
 
 - (id)_initWithPageContext:(id<TiEvaluator>)context andArgs:(NSDictionary *)args;
-
-- (GPUImageFilter *)filter;
 
 @end

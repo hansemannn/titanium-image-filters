@@ -74,7 +74,13 @@
     UIImage *resultImage = [filter imageFromCurrentFramebuffer];
     
     // Dispatch callback
-    [callback call:@[@{@"image": [[TiBlob alloc] initWithImage:resultImage]}] thisObject:self];
+    [callback call:@[@{
+        @"image": [[TiBlob alloc] initWithImage:resultImage],
+        @"size": @{
+            @"height": NUMFLOAT([filter sizeOfFBO].height),
+            @"width": NUMFLOAT([filter sizeOfFBO].width)
+        }
+    }] thisObject:self];
     
     // Cleanup
     [[GPUImageContext sharedFramebufferCache] purgeAllUnassignedFramebuffers];
