@@ -6,7 +6,7 @@ var win = Ti.UI.createWindow({
 });
 
 var btn = Ti.UI.createButton({
-    title: 'Apply Sepia Filter',
+    title: 'Apply Brightness Filter',
     top: 50
 });
 
@@ -16,9 +16,12 @@ var img = Ti.UI.createImageView({
 
 btn.addEventListener('click', function() {
     var filter = GPUImage.createFilter({
-        type: 'GPUImageSepiaFilter',
+        type: 'GPUImageBrightnessFilter',
+        properties: {
+            brightness: 0.8
+        }
     });
-	
+    
     var image = GPUImage.generateFilteredImage({
         image: imageName,
         filter: filter,

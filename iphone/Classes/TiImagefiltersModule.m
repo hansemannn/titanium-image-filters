@@ -6,6 +6,8 @@
  */
 
 #import "TiImagefiltersModule.h"
+#import "TiImagefiltersFilterProxy.h"
+
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
@@ -37,34 +39,31 @@
 
 #pragma Public APIs
 
-- (id)filteredImage:(id)args
+- (id)createFilter:(id)args
+{
+    ENSURE_SINGLE_ARG(args, NSDictionary);
+    
+    return [[TiImagefiltersFilterProxy alloc] _initWithPageContext:[self pageContext] andArgs:args];
+}
+
+- (void)generateFilteredImage:(id)args
 {
     ENSURE_SINGLE_ARG(args, NSDictionary);
     
     NSString *fileName = [args objectForKey:@"image"];
-    NSString *filterName = [args objectForKey:@"filter"];
-    NSString *shaderName = [args objectForKey:@"shader"];
-    KrollCallback *callback = [args objectForKey:@"callback"];
+    id filterProxy = [args objectForKey:@"filter"];
+    id callback = [args objectForKey:@"callback"];
     
     ENSURE_TYPE(fileName, NSString);
-    ENSURE_TYPE_OR_NIL(shaderName, NSString);
     ENSURE_TYPE(callback, KrollCallback);
+    ENSURE_TYPE(filterProxy, TiImagefiltersFilterProxy);
     
     // Create image buffer
     UIImage *inputImage = [TiUtils toImage:fileName proxy:self];
     GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
     
-    // Generate filter
-    GPUImageFilter *filter;
-    
-    if (shaderName != nil) {
-        filter = [[GPUImageFilter alloc] initWithFragmentShaderFromFile:shaderName];
-    } else {
-        ENSURE_TYPE(filterName, NSString);
-        
-        Class FilterClass = NSClassFromString(filterName);
-        filter = [[FilterClass alloc] init];
-    }
+    // Receive filter
+    GPUImageFilter *filter = [(TiImagefiltersFilterProxy *)filterProxy filter];
     
     // Process image
     [stillImageSource addTarget:filter];
@@ -79,7 +78,6 @@
     
     // Cleanup
     [[GPUImageContext sharedFramebufferCache] purgeAllUnassignedFramebuffers];
-    resultImage = nil;
 }
 
 MAKE_SYSTEM_STR(FILTER_SEPIA, @"GPUImageSepiaFilter");

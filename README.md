@@ -11,32 +11,43 @@ plus the ability to create own filters via shaders.
 
 ## Features
 
-Right now, this module only supports applying built-in filters to a still image:
+Right now, this module supports applying built-in filters to a still image:
 ```js
 var GPUImage = require('ti.imagefilters');
 var imageName = 'test.jpg'
 
 var win = Ti.UI.createWindow({
-  backgroundColor: 'white'
+    backgroundColor: '#fff'
 });
 
 var btn = Ti.UI.createButton({
-  title: 'Apply Sepia Filter',
-  top: 50
+    title: 'Apply Brightness Filter',
+    top: 50
 });
 
 var img = Ti.UI.createImageView({
-  image: imageName
+    image: imageName
 });
 
 btn.addEventListener('click', function() {
-  var image = GPUImage.filteredImage({
-    image: imageName,
-    filter: GPUImage.FILTER_SEPIA, // or the filter class name, e.g. `GPUImageHueFilter`
-    callback: function(e) {
-      img.setImage(e.image);
-    }
-  });
+    var filter = GPUImage.createFilter({
+        type: 'GPUImageBrightnessFilter',
+
+        // Properties are optional and automatically
+        // mapped to the native properties. Check out
+        // the GPUImage documentation for possible values.
+        properties: {
+            brightness: 0.8
+        }
+    });
+    
+    var image = GPUImage.generateFilteredImage({
+        image: imageName,
+        filter: filter,
+        callback: function(e) {
+            img.setImage(e.image);
+        }
+    });
 });
 
 win.add(img);
@@ -44,8 +55,10 @@ win.add(btn);
 
 win.open();
 ```
-You cannot specify filter properies by now, so I am thinking about moving the filter to
-an own class that does KVO to check and supply the used properties dynamically.
+The module also supports all possible filter configurations. They are mapped to the `properties`
+attribute that expects an object of possible filter values. For example, the `GPUImageBrightnessFilter`
+supports the `brightness` property (see native docs [here](https://github.com/BradLarson/GPUImage#color-adjustments)), so you would include it as seen in
+the above example. Simple as that!
 
 ## Android
 

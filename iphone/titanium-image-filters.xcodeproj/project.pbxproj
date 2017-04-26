@@ -28,6 +28,8 @@
 		24DE9E1211C5FE74003F90F6 /* TiImagefiltersModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* TiImagefiltersModuleAssets.m */; };
 		AA747D9F0F9514B9006C5449 /* TiImagefilters_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiImagefilters_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		DB14B9E11EB0E48A002F0D36 /* TiImagefiltersFilterProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = DB14B9DF1EB0E48A002F0D36 /* TiImagefiltersFilterProxy.h */; };
+		DB14B9E21EB0E48A002F0D36 /* TiImagefiltersFilterProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14B9E01EB0E48A002F0D36 /* TiImagefiltersFilterProxy.m */; };
 		DBA260681EB0AFF80038D0E0 /* GLProgram.h in Headers */ = {isa = PBXBuildFile; fileRef = DBA25F1A1EB0AFF80038D0E0 /* GLProgram.h */; };
 		DBA260691EB0AFF80038D0E0 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA25F1B1EB0AFF80038D0E0 /* GLProgram.m */; };
 		DBA2606A1EB0AFF80038D0E0 /* GPUImage.h in Headers */ = {isa = PBXBuildFile; fileRef = DBA25F1C1EB0AFF80038D0E0 /* GPUImage.h */; };
@@ -384,6 +386,8 @@
 		AA747D9E0F9514B9006C5449 /* TiImagefilters_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiImagefilters_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libti.imagefilters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libti.imagefilters.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB14B9DF1EB0E48A002F0D36 /* TiImagefiltersFilterProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiImagefiltersFilterProxy.h; path = Classes/TiImagefiltersFilterProxy.h; sourceTree = "<group>"; };
+		DB14B9E01EB0E48A002F0D36 /* TiImagefiltersFilterProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiImagefiltersFilterProxy.m; path = Classes/TiImagefiltersFilterProxy.m; sourceTree = "<group>"; };
 		DBA25F141EB0AFF80038D0E0 /* lookup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup.png; sourceTree = "<group>"; };
 		DBA25F151EB0AFF80038D0E0 /* lookup_amatorka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_amatorka.png; sourceTree = "<group>"; };
 		DBA25F161EB0AFF80038D0E0 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
@@ -784,6 +788,8 @@
 				24DE9E1011C5FE74003F90F6 /* TiImagefiltersModuleAssets.m */,
 				24DD6CF71134B3F500162E58 /* TiImagefiltersModule.h */,
 				24DD6CF81134B3F500162E58 /* TiImagefiltersModule.m */,
+				DB14B9DF1EB0E48A002F0D36 /* TiImagefiltersFilterProxy.h */,
+				DB14B9E01EB0E48A002F0D36 /* TiImagefiltersFilterProxy.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1302,6 +1308,7 @@
 				DBA260A31EB0AFF80038D0E0 /* GPUImageDarkenBlendFilter.h in Headers */,
 				DBA2606B1EB0AFF80038D0E0 /* GPUImage3x3ConvolutionFilter.h in Headers */,
 				DBA2609F1EB0AFF80038D0E0 /* GPUImageCrosshairGenerator.h in Headers */,
+				DB14B9E11EB0E48A002F0D36 /* TiImagefiltersFilterProxy.h in Headers */,
 				DBA261B01EB0AFF80038D0E0 /* GPUImageView.h in Headers */,
 				DBA261071EB0AFF80038D0E0 /* GPUImageLuminanceRangeFilter.h in Headers */,
 				DBA260C91EB0AFF80038D0E0 /* GPUImageGaussianBlurFilter.h in Headers */,
@@ -1576,6 +1583,7 @@
 				DBA260A21EB0AFF80038D0E0 /* GPUImageCrosshatchFilter.m in Sources */,
 				DBA260BC1EB0AFF80038D0E0 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				DBA2616E1EB0AFF80038D0E0 /* GPUImageSourceOverBlendFilter.m in Sources */,
+				DB14B9E21EB0E48A002F0D36 /* TiImagefiltersFilterProxy.m in Sources */,
 				DBA2617E1EB0AFF80038D0E0 /* GPUImageThreeInputFilter.m in Sources */,
 				DBA2612A1EB0AFF80038D0E0 /* GPUImageOpacityFilter.m in Sources */,
 				DBA260921EB0AFF80038D0E0 /* GPUImageColorBurnBlendFilter.m in Sources */,
