@@ -43,10 +43,11 @@
     
     NSString *fileName = [args objectForKey:@"image"];
     NSString *filterName = [args objectForKey:@"filter"];
+    NSString *shaderName = [args objectForKey:@"shader"];
     KrollCallback *callback = [args objectForKey:@"callback"];
     
     ENSURE_TYPE(fileName, NSString);
-    ENSURE_TYPE(filterName, NSString);
+    ENSURE_TYPE_OR_NIL(shaderName, NSString);
     ENSURE_TYPE(callback, KrollCallback);
     
     // Create image buffer
@@ -54,8 +55,16 @@
     GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
     
     // Generate filter
-    Class FilterClass = NSClassFromString(filterName);
-    GPUImageFilter *filter = [[FilterClass alloc] init];
+    GPUImageFilter *filter;
+    
+    if (shaderName != nil) {
+        filter = [[GPUImageFilter alloc] initWithFragmentShaderFromFile:shaderName];
+    } else {
+        ENSURE_TYPE(filterName, NSString);
+        
+        Class FilterClass = NSClassFromString(filterName);
+        filter = [[FilterClass alloc] init];
+    }
     
     // Process image
     [stillImageSource addTarget:filter];
