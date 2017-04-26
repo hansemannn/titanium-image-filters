@@ -42,7 +42,7 @@
     ENSURE_SINGLE_ARG(args, NSDictionary);
     
     NSString *fileName = [args objectForKey:@"image"];
-    NSString *filterName = [args objectForKey:@"filterClass"];
+    NSString *filterName = [args objectForKey:@"filter"];
     
     UIImage *inputImage = [UIImage imageNamed:fileName];
     
