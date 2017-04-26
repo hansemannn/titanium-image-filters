@@ -43,21 +43,34 @@
     
     NSString *fileName = [args objectForKey:@"image"];
     NSString *filterName = [args objectForKey:@"filter"];
+    KrollCallback *callback = [args objectForKey:@"callback"];
     
-    UIImage *inputImage = [UIImage imageNamed:fileName];
+    ENSURE_TYPE(fileName, NSString);
+    ENSURE_TYPE(filterName, NSString);
+    ENSURE_TYPE(callback, KrollCallback);
     
+    // Create image buffer
+    UIImage *inputImage = [TiUtils toImage:fileName proxy:self];
     GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
     
+    // Generate filter
     Class FilterClass = NSClassFromString(filterName);
     GPUImageFilter *filter = [[FilterClass alloc] init];
     
+    // Process image
     [stillImageSource addTarget:filter];
     [filter useNextFrameForImageCapture];
     [stillImageSource processImage];
     
+    // Receive result image
     UIImage *resultImage = [filter imageFromCurrentFramebuffer];
     
-    return [[TiBlob alloc] initWithImage:resultImage];
+    // Dispatch callback
+    [callback call:@[@{@"image": [[TiBlob alloc] initWithImage:resultImage]}] thisObject:self];
+    
+    // Cleanup
+    [[GPUImageContext sharedFramebufferCache] purgeAllUnassignedFramebuffers];
+    resultImage = nil;
 }
 
 MAKE_SYSTEM_STR(FILTER_SEPIA, @"GPUImageSepiaFilter");

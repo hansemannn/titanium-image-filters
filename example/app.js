@@ -1,39 +1,24 @@
-// This is a test harness for your module
-// You should do something interesting in this harness
-// to test out the module and to provide instructions
-// to users on how to use it by example.
-
-
-// open a single window
+var GPUImage = require('ti.imagefilters');
 var win = Ti.UI.createWindow({
-	backgroundColor:'white'
+    backgroundColor: '#fff'
 });
-var label = Ti.UI.createLabel();
-win.add(label);
+var btn = Ti.UI.createButton({
+    title: 'Apply Sepia Filter',
+    top: 50
+});
+var imageName = 'test.jpg'
+var img = Ti.UI.createImageView({
+    image: imageName
+});
+win.add(img);
+btn.addEventListener('click', function() {
+    var image = GPUImage.filteredImage({
+        image: imageName,
+        filter: GPUImage.FILTER_SEPIA, // or the filter class name, e.g. `GPUImageHueFilter`
+        callback: function(e) {
+            img.setImage(e.image);
+        }
+    });
+});
+win.add(btn);
 win.open();
-
-// TODO: write your module tests here
-var titanium_image_filters = require('ti.imagefilters');
-Ti.API.info("module is => " + titanium_image_filters);
-
-label.text = titanium_image_filters.example();
-
-Ti.API.info("module exampleProp is => " + titanium_image_filters.exampleProp);
-titanium_image_filters.exampleProp = "This is a test value";
-
-if (Ti.Platform.name == "android") {
-	var proxy = titanium_image_filters.createExample({
-		message: "Creating an example Proxy",
-		backgroundColor: "red",
-		width: 100,
-		height: 100,
-		top: 100,
-		left: 150
-	});
-
-	proxy.printMessage("Hello world!");
-	proxy.message = "Hi world!.  It's me again.";
-	proxy.printMessage("Hello world!");
-	win.add(proxy);
-}
-
