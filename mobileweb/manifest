@@ -1,0 +1,17 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+description: titanium-image-filters
+author: Hans Knoechel
+license: Specify your license
+copyright: Copyright (c) 2017 by Your Company
+
+# these should not be edited
+name: titanium-image-filters
+moduleid: ti.imagefilters
+guid: bc72ce9b-ad0d-41cc-a38a-99d2527460dc
+platform: mobileweb
+minsdk: 6.0.3.GA
