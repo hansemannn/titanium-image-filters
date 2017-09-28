@@ -71,7 +71,7 @@
     [stillImageSource processImage];
     
     // Receive result image
-    UIImage *resultImage = [filter imageFromCurrentFramebuffer];
+    UIImage *resultImage = [filter imageFromCurrentFramebufferWithOrientation:inputImage.imageOrientation];
     
     // Dispatch callback
     [callback call:@[@{
