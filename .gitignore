@@ -1,0 +1,6 @@
+ios/build
+.DS_STORE
+ios/titanium-image-filters.xcodeproj/xcuserdata/*.xcuserdatad
+ios/titanium-image-filters.xcodeproj/project.xcworkspace/xcuserdata
+ios/titanium-image-filters.xcodeproj/project.xcworkspace/xcshareddata
+/ios/dist

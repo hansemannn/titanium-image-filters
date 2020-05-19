@@ -8,6 +8,7 @@
 #import "TiImagefiltersModule.h"
 #import "TiImagefiltersFilterProxy.h"
 
+#import "TiBlob.h"
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
@@ -50,16 +51,15 @@
 {
     ENSURE_SINGLE_ARG(args, NSDictionary);
     
-    NSString *fileName = [args objectForKey:@"image"];
+    id image = [args objectForKey:@"image"];
     id filterProxy = [args objectForKey:@"filter"];
     id callback = [args objectForKey:@"callback"];
     
-    ENSURE_TYPE(fileName, NSString);
     ENSURE_TYPE(callback, KrollCallback);
     ENSURE_TYPE(filterProxy, TiImagefiltersFilterProxy);
     
     // Create image buffer
-    UIImage *inputImage = [TiUtils toImage:fileName proxy:self];
+    UIImage *inputImage = [TiUtils toImage:image proxy:self];
     GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
     
     // Receive filter

@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 1.0.1
+version: 2.0.0
 apiversion: 2
 architectures: armv7 arm64 i386 x86_64
 description: titanium-image-filters
@@ -15,4 +15,4 @@ name: titanium-image-filters
 moduleid: ti.imagefilters
 guid: bc72ce9b-ad0d-41cc-a38a-99d2527460dc
 platform: iphone
-minsdk: 6.0.0
+minsdk: 9.0.0
