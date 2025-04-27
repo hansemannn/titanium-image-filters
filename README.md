@@ -2,8 +2,6 @@
 
 Use the GPUImage library to apply pre-built and custom filters to images in Titanium.
 
-> Note: This module will likely be replaced by the [Hyperloop-based](https://github.com/hyperloop-modules/titanium-image-filters) cross-platform version.
-
 ## Credits
 
 Really all credits of this module should go to [@BradLarson](https://github.com/BradLarson) who made the
@@ -14,24 +12,25 @@ plus the ability to create own filters via shaders.
 
 Right now, this module supports applying built-in filters to a still image:
 ```js
-var GPUImage = require('ti.imagefilters');
-var imageName = 'test.jpg'
+import GPUImage from 'ti.imagefilters';
 
-var win = Ti.UI.createWindow({
+const imageName = 'test.jpg'
+
+const window = Ti.UI.createWindow({
     backgroundColor: '#fff'
 });
 
-var btn = Ti.UI.createButton({
+const btn = Ti.UI.createButton({
     title: 'Apply Brightness Filter',
     top: 50
 });
 
-var img = Ti.UI.createImageView({
+const img = Ti.UI.createImageView({
     image: imageName
 });
 
-btn.addEventListener('click', function() {
-    var filter = GPUImage.createFilter({
+btn.addEventListener('click', () => {
+    const filter = GPUImage.createFilter({
         type: 'GPUImageBrightnessFilter',
 
         // Properties are optional and automatically
@@ -42,20 +41,19 @@ btn.addEventListener('click', function() {
         }
     });
     
-    var image = GPUImage.generateFilteredImage({
+    const image = GPUImage.generateFilteredImage({
         image: imageName,
         filter: filter,
-        callback: function(e) {
-            img.setImage(e.image);
+        callback: event => {
+            img.setImage(event.image);
         }
     });
 });
 
-win.add(img);
-win.add(btn);
-
-win.open();
+window.add([img, btn]);
+window.open();
 ```
+
 The module also supports all possible filter configurations. They are mapped to the `properties`
 attribute that expects an object of possible filter values. For example, the `GPUImageBrightnessFilter`
 supports the `brightness` property (see native docs [here](https://github.com/BradLarson/GPUImage#color-adjustments)), so you would include it as seen in
