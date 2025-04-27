@@ -1,7 +1,6 @@
 # Titanium Image Filters
 
-Use the GPUImage library to apply pre-built and custom filters to images in Titanium Edit
-Add topics.
+Use the GPUImage library to apply pre-built and custom filters to images in Titanium.
 
 > Note: This module will likely be replaced by the [Hyperloop-based](https://github.com/hyperloop-modules/titanium-image-filters) cross-platform version.
 
